@@ -1,5 +1,6 @@
 sc
-tst
+test
 *.o
 *.swp
+.\#*
 \#*\#

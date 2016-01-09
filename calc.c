@@ -89,12 +89,6 @@ NUM *rpow(NUM *n1, NUM *n2) {
   return n;
 }
 
-char *numtostr(NUM *n) {
-  if (n == NULL)
-    return "<inv>";
-
-  /* TODO: fix sprintf buffer size problem */
-  char *s = malloc(sizeof(char)*20);
-  sprintf(s, "%f", (double) n->num);
-  return s;
+void prnum(NUM *n) {
+  printf("%Lf\n", n->num);
 }

@@ -17,19 +17,19 @@ install:
 uninstall:
 	rm ${INSTALL}/sc
 
-TEST=tst
+TEST=test
 
 clean:
 	[ -f sc ] && rm sc
 	[ -f ${TEST} ] && rm ${TEST}
 
 stack_test:
-	${CC} stack.c calc.c test/stack_test.c ${CFLAGS} ${COPTS} -o ${TEST}
+	${CC} stack.c calc.c tests/stack_test.c ${CFLAGS} ${COPTS} -o ${TEST}
 	./${TEST}
 	rm ${TEST}
 
 calc_test:
-	${CC} calc.c test/calc_test.c ${CFLAGS} ${COPTS} -o ${TEST}
+	${CC} calc.c tests/calc_test.c ${CFLAGS} ${COPTS} -o ${TEST}
 	./${TEST}
 	rm ${TEST}
 
