@@ -6,6 +6,14 @@
 
 #include "calc.h"
 
+/* GET TYPE
+
+   Interprets STRING and returns
+   type as defined in op.h.
+
+   -1 is returned if operator
+   doesn't exist. */
+
 unsigned char gettype(const char *s) {
   if (strlen(s) == 1) switch (s[0]) {
     case '+': return ADD;
@@ -19,6 +27,11 @@ unsigned char gettype(const char *s) {
   return -1;
 }
 
+/* IS NUMBER
+
+   Checks if STRING is a number,
+   and returns a boolean value. */
+
 int isnumber(char *s) {
   if (*s == '-' && strlen(s) == 1) return 0;
   for (int i = 0; i < (int) strlen(s); i++)
@@ -29,6 +42,8 @@ int isnumber(char *s) {
   return 1;
 }
 
+/* STRING TO NUMBER */
+
 NUM *strtonum(char *s) {
   NUM *n = calloc(1, sizeof(NUM));
     
@@ -38,11 +53,18 @@ NUM *strtonum(char *s) {
     return n;
   }
 
-  if ((n->type = gettype(s)) == -1)
+  if ((n->type = gettype(s)) == -1) {
     printf("error: invalid operator %s\n", s);
-    
+    return NULL;
+  }
+
   return n;
 }
+
+/* INT TO NUMBER
+
+   Allocates new NUM and inserts
+   value of int64_t */
 
 NUM *itonum(int64_t i) {
   NUM *n = malloc(sizeof(NUM));
@@ -50,11 +72,22 @@ NUM *itonum(int64_t i) {
   return n;
 }
 
+/* FLOAT TO NUMBER
+
+   Allocates new NUM and inserts
+   value of long double */
+
 NUM *ftonum(long double d) {
   NUM *n = malloc(sizeof(NUM));
   n->num = d;
   return n;
 }
+
+/* SUMMATION
+
+   Sum of n1 and n2. Will
+   return NULL, if either is
+   NULL */
 
 NUM *sum(NUM *n1, NUM *n2) {
   if (n1 == NULL ||
@@ -67,6 +100,12 @@ NUM *sum(NUM *n1, NUM *n2) {
   return n;
 }
 
+/* MULTIPLICATION
+
+   Value of n1 times n2. Will
+   return NULL, if either is
+   NULL */
+
 NUM *mul(NUM *n1, NUM *n2) {
   if (n1 == NULL ||
       n2 ==  NULL)
@@ -78,6 +117,12 @@ NUM *mul(NUM *n1, NUM *n2) {
   return n;  
 }
 
+/* POWER
+
+   n1 to the power of n2. Will
+   return NULL, if either is
+   NULL*/
+
 NUM *rpow(NUM *n1, NUM *n2) {
   if (n1 == NULL ||
       n2 == NULL)
@@ -88,6 +133,10 @@ NUM *rpow(NUM *n1, NUM *n2) {
     
   return n;
 }
+
+/* PRINT NUMBER
+
+   Self expiatory */
 
 void prnum(NUM *n) {
   printf("%Lf\n", n->num);

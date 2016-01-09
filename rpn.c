@@ -5,6 +5,14 @@
 #define NEGATIVE itonum(-1)
 #define HALF ftonum(0.5)
 
+/* REVERSED POLISH STACK INTERPRETER
+
+   This function takes the pointer to a pointer
+   of a STACK and interprets in tree-wise.
+
+   Returning either a NUM on success (enough elements
+   available) or NULL on failure. */
+
 NUM *rpsi(STACK **s) {
   NUM *r, *i = pop(s);
 
