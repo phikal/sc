@@ -13,13 +13,13 @@ int help(char *bin, int e) {
 int main(int argc, char *argv[]) {
   if (argc == 1)
     return help(argv[0], 1);
-    
-  NUM *n = rpsi(argvtostack(argv+1, argc-1));
-  
+
+  STACK *s = argvtostack(argv+1, argc-1);
+  NUM *n = rpsi(&s);
   if (n == NULL)
     return help(argv[0], 2);
   else
-    printf("%s\n", numtostr(n));
+    prnum(n);
   
   return 0;
 }

@@ -19,5 +19,5 @@ NUM *sum(NUM *n1, NUM *n2);
 NUM *mul(NUM *n1, NUM *n2);
 NUM *rpow(NUM *n1, NUM *n2);
 
-char *numtostr(NUM *n);
+void prnum(NUM *n);
 int isnumber(char *s);
