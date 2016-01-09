@@ -1,0 +1,80 @@
+#+TITLE: sc - Shell Calculator
+
+=sc= is a simple RPN calculator that interprets
+command line input and outputs a result. In some
+sense dc but without =p= and a lot worse (for now...).
+
+* How to use
+  Wikipedia's [[https://en.wikipedia.org/wiki/Reverse_Polish_notation][RPN]] article explains what the reversed
+  polish notation is about an why it's /not bad/.
+
+  The main reason it's used in =sc= is because brackets
+  are annoying to use in a shell environment. 
+
+  Arguments are separated for the each other via a 
+  white spaces, and if one argument is not a number it
+  is either a operator or causes an error. Here are the 
+  operators.
+** Operators
+   | Symbol | Meaning                        | Argument count |
+   |--------+--------------------------------+----------------|
+   | =+=    | Addition                       |              2 |
+   | =-=    | Subtraction                    |              2 |
+   | =x=    | Multiplication (note: not =*=) |              2 |
+   | =/=    | Division                       |              2 |
+   | =^=    | Power                          |              2 |
+   | =s=    | Square Root                    |              1 |
+   | =i=    | Inversion                      |              1 |
+* Examples:
+  =sc 3 4 x=
+  Results in:
+  =12.000000=
+
+  =sc 5 s 1 + 2 /=
+
+  This is the same as \frac{\sqrt{5} + 1}{2}
+
+  Results in: 
+  =1.618034=
+
+  If a operator requires more arguments than it is given,
+  =sc= will report an error (code 2) and quit.
+* To do
+  * Reimplement NUM struct and functions to resemble
+    GNU =bc= / =dc='s precision.
+  * Integration and Deviation
+  * Implement command line flag handling. Ideas.
+    | Flag | Meaning           | Argument[s]           |
+    |------+-------------------+-----------------------|
+    | =-h= | Help screen       | none                  |
+    | =-v= | Version           | none                  |
+    | =-s= | Print whole stack | none                  |
+    | =-d= | Derivation        | Variable to derive    |
+    | =-i= | Integration       | Variable to integrate |    
+  * Extra functions and operators. Ideas:
+    | Symbol | Meaning                                    | Arguments |
+    |--------+--------------------------------------------+-----------|
+    | sin    | Sine                                       |         1 |
+    | cos    | Cosine                                     |         1 |
+    | tan    | Tangent                                    |         1 |
+    | asin   | arc-sine                                   |         1 |
+    | acos   | arc-cosine                                 |         1 |
+    | atan   | arc-tan                                    |         1 |
+    | exp    | exponential to the power of e              |         1 |
+    | lg     | natural logarithm                          |         1 |
+    | log    | logarithm to the power of 10               |         1 |
+    | fact   | Factorial                                  |         1 |
+    | abs    | Absolute of value                          |         1 |
+    | pi     | Value of Pi                                |         0 |
+    | e      | Value of Eulers Number                     |         0 |
+    | rnd    | Returns random number                      |         0 |
+    | rand   | Returns random number (between n1 and n2)  |         2 |
+    | randi  | Returns random integer (between n1 and n2) |         2 |
+    And probably more over time
+    
+* Licence
+  =sc= uses the GNU General Public License v2.0.
+
+  See =LICENCE=.
+
+
