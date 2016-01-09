@@ -4,40 +4,27 @@
 #include "stack.h"
 
 STACK *argvtostack(char **argv, int argc) {
-  static STACK s;
-  for (int i = 0; i < argc; i++) {
-    NUM *n = strtonum(argv[i]);
-    push(&s, n);
-  }
-  return &s;
+  STACK *s = NULL;
+  for (int i = 0; i < argc; i++)
+    push(&s, strtonum(argv[i]));
+  return s;
 }
 
-NUM *pop(STACK * s) {
-  if (s == NULL)
-    return NULL;
-  
-  if (s->post == NULL) {
-    NUM *r = s->item;
-    STACK **i = &s;
-    i = NULL;
-    return r;
-  }
-  
-  while (s->post->post != NULL)
-    s = s->post;
-  NUM *r = s->post->item;
-  s->post = NULL;
-  return r;
+NUM *pop(STACK **s) {
+  if (*s == NULL) return NULL;
+  NUM *n = malloc(sizeof(NUM));
+  n = (*s)->item;
+  *s = (*s)->post;
+  return n;
 }
 
-void push(STACK *s, NUM *n) {
-  if (s->item == NULL) {
-     s->item = n;
-  } else {
-    STACK *f = malloc(sizeof(STACK));
-    f->item = n;
-    while (s->post != NULL)
-      s = s->post;
-    s->post = f;
+void push(STACK **s, NUM *n) {
+  STACK *i = malloc(sizeof(STACK));
+  i->item = n;
+  i->post = NULL;
+  if (s == NULL) *s = i;
+  else {
+    i->post = *s;
+    *s = i;
   }
 }

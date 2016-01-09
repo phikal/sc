@@ -1,15 +1,12 @@
 #include <string.h>
 
-#include <stdio.h>
-
 #include "rpn.h"
 
 #define NEGATIVE itonum(-1)
 #define HALF ftonum(0.5)
 
-NUM *rpsi(STACK *s) {
-  NUM *r;
-  NUM *i = pop(s);
+NUM *rpsi(STACK **s) {
+  NUM *r, *i = pop(s);
 
   if (i == NULL)
     return NULL;

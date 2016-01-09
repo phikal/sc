@@ -1,3 +1,3 @@
 #include "stack.h"
 
-NUM *rpsi(STACK *s);
+NUM *rpsi(STACK **s);
