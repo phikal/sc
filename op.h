@@ -12,3 +12,4 @@
 #define POW 5 // power
 #define SQR 6 // square root (x^0.5)
 #define INV 7 // invert (x^-1)
+#define NEG 8 // negative (x*-1)

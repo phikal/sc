@@ -25,6 +25,7 @@ sense =dc(1)= but without =p= and a lot worse (for now...).
    | =^=    | Power                          |              2 |
    | =s=    | Square Root                    |              1 |
    | =i=    | Inversion                      |              1 |
+   | =n=    | Negative                       |              1 |
 * Examples
   =sc 3 4 x= Results in: =12.000000=
 

@@ -29,6 +29,7 @@ unsigned char gettype(const char *s) {
 	case '^': return POW;
 	case 's': return SQR;
 	case 'i': return INV;
+	case 'n': return NEG;
 	}
     return -1;
 }

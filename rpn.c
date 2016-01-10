@@ -56,6 +56,10 @@ NUM *rpsi(STACK **s) {
 	r = rpow(rpsi(s),
 		 NEGATIVE);
 	break;
+    case NEG:
+	r = mul(rpsi(s),
+		 NEGATIVE);
+	break;
     case NRM:
 	r = i;
     }
