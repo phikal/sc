@@ -1,4 +1,9 @@
-#include <string.h>
+/* rpn.c
+
+   This file holds the rpsi function, that
+   is used to evaluate a stack, interpret
+   it as a tree and return a value. */
+
 
 #include "rpn.h"
 
@@ -14,45 +19,46 @@
    available) or NULL on failure. */
 
 NUM *rpsi(STACK **s) {
-  NUM *r, *i = pop(s);
+    NUM *r = NULL,
+	*i = pop(s);
 
-  if (i == NULL)
-    return NULL;
+    if (i == NULL)
+	return NULL;
 
-  switch (i->type) {
-  case ADD:
-    r = sum(rpsi(s),
-	    rpsi(s));
-    break;
-  case SUB:
-    r = sum(rpsi(s),
-	    mul(rpsi(s),
-		NEGATIVE));
-    break;
-  case MUL:
-    r = mul(rpsi(s),
-	    rpsi(s));
-    break;
-  case DIV:
-    r = mul(rpsi(s),
-	    rpow(rpsi(s),
-		 NEGATIVE));
-    break;
-  case POW:
-    r = rpow(rpsi(s),
-	     rpsi(s));
-    break;
-  case SQR:
-    r = rpow(rpsi(s),
-	     HALF);
-    break;
-  case INV:
-    r = rpow(rpsi(s),
-	     NEGATIVE);
-    break;
-  case NRM:
-    r = i;
-  }
+    switch (i->type) {
+    case ADD:
+	r = sum(rpsi(s),
+		rpsi(s));
+	break;
+    case SUB:
+	r = sum(rpsi(s),
+		mul(rpsi(s),
+		    NEGATIVE));
+	break;
+    case MUL:
+	r = mul(rpsi(s),
+		rpsi(s));
+	break;
+    case DIV:
+	r = mul(rpsi(s),
+		rpow(rpsi(s),
+		     NEGATIVE));
+	break;
+    case POW:
+	r = rpow(rpsi(s),
+		 rpsi(s));
+	break;
+    case SQR:
+	r = rpow(rpsi(s),
+		 HALF);
+	break;
+    case INV:
+	r = rpow(rpsi(s),
+		 NEGATIVE);
+	break;
+    case NRM:
+	r = i;
+    }
 
-  return r;
+    return r;
 }

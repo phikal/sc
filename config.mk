@@ -6,4 +6,4 @@ INSTALL=/usr/local/bin/
 MAN=/usr/share/man/
 
 # compiler options
-CFLAGS=-O0 -ggdb
+CFLAGS=-O3

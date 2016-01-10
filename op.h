@@ -1,3 +1,8 @@
+/* op.h
+
+   All operator numbers are
+   defined in this file. */
+
 #define NRM 0 // normal
 
 #define ADD 1 // addition

@@ -25,7 +25,7 @@ sense dc but without =p= and a lot worse (for now...).
    | =^=    | Power                          |              2 |
    | =s=    | Square Root                    |              1 |
    | =i=    | Inversion                      |              1 |
-* Examples:
+* Examples
   =sc 3 4 x=
   Results in:
   =12.000000=
@@ -39,6 +39,21 @@ sense dc but without =p= and a lot worse (for now...).
 
   If a operator requires more arguments than it is given,
   =sc= will report an error (code 2) and quit.
+* Building
+  To build and install, simply type:
+
+  #+begin_shell-script options
+  make
+  make install
+  #+end_shell-script
+
+  And to uninstall:
+
+  #+begin_shell-script options
+  make uninstall
+  #+end_shell-script
+
+  See [[./Makefile][Makefile]] for more information.
 * To do
   * Reimplement NUM struct and functions to resemble
     GNU =bc= / =dc='s precision.

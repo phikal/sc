@@ -1,10 +1,14 @@
+/* stack.h
+
+   Header file for stack.c */
+
 #include "calc.h"
 
 typedef struct stack STACK;
 
 struct stack {
-  NUM *item;
-  STACK *post;
+    NUM *item;
+    STACK *post;
 };
 
 STACK *argvtostack(char **argv, int argc);

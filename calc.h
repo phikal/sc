@@ -1,14 +1,18 @@
+/* calc.h
+
+   Header file for calc.c */
+
+#include "op.h"
+
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
 
-#include "op.h"
-
 typedef struct number NUM;
 
 struct number {
-  int8_t type;
-  double long num;
+    int8_t type;
+    double long num;
 };
 
 NUM *ftonum(long double d);
