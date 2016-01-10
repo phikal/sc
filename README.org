@@ -2,11 +2,11 @@
 
 =sc= is a simple RPN calculator that interprets
 command line input and outputs a result. In some
-sense dc but without =p= and a lot worse (for now...).
+sense =dc(1)= but without =p= and a lot worse (for now...).
 
 * How to use
-  Wikipedia's [[https://en.wikipedia.org/wiki/Reverse_Polish_notation][RPN]] article explains what the reversed
-  polish notation is about an why it's /not bad/.
+  Wikipedia's [[https://en.wikipedia.org/wiki/Reverse_Polish_notation][RPN]]
+  article explains what the reversed polish notation is about an why it's /not bad/.
 
   The main reason it's used in =sc= is because brackets
   are annoying to use in a shell environment. 
@@ -26,32 +26,25 @@ sense dc but without =p= and a lot worse (for now...).
    | =s=    | Square Root                    |              1 |
    | =i=    | Inversion                      |              1 |
 * Examples
-  =sc 3 4 x=
-  Results in:
-  =12.000000=
+  =sc 3 4 x= Results in: =12.000000=
 
-  =sc 5 s 1 + 2 /=
-
-  This is the same as \frac{\sqrt{5} + 1}{2}
-
-  Results in: 
-  =1.618034=
+  =sc 1 5 s + 2 /= ([[https://en.wikipedia.org/wiki/Golden_ratio][Golden ratio]]), results in:  =1.618034=
 
   If a operator requires more arguments than it is given,
   =sc= will report an error (code 2) and quit.
 * Building
   To build and install, simply type:
 
-  #+begin_shell-script options
+  #+begin_src
   make
   make install
-  #+end_shell-script
+  #+end_src
 
   And to uninstall:
 
-  #+begin_shell-script options
+  #+begin_src
   make uninstall
-  #+end_shell-script
+  #+end_src
 
   See [[./Makefile][Makefile]] for more information.
 * To do
@@ -90,6 +83,6 @@ sense dc but without =p= and a lot worse (for now...).
 * Licence
   =sc= uses the GNU General Public License v2.0.
 
-  See =LICENCE=.
+  See [[LICENCE]].
 
 
