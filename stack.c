@@ -4,11 +4,10 @@
    with the STACK struct are
    defined here. */
 
+#include "sc.h"
+
 #include <stdlib.h>
 #include <stdio.h>
-
-#include "stack.h"
-
 
 /* ARGV to STACK
 

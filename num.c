@@ -1,5 +1,5 @@
 
-#include "num.h"
+#include "sc.h"
 
 #include <stdlib.h>
 #include <string.h>

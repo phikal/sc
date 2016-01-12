@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-#include "rpn.h"
+#include "sc.h"
 
 /* HELP
 

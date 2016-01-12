@@ -4,11 +4,12 @@
    that have to do with working with
    the NUM struct (see calc.h). */
 
+#include "sc.h"
+
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-
-#include "calc.h"
+#include <stddef.h>
 
 /* SUMMATION
 

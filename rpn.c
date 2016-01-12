@@ -4,8 +4,9 @@
    is used to evaluate a stack, interpret
    it as a tree and return a value. */
 
+#include "sc.h"
 
-#include "rpn.h"
+#include <stddef.h>
 
 #define NEGATIVE itonum(-1)
 #define HALF ftonum(0.5)
