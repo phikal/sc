@@ -90,6 +90,9 @@ NUM *fact(NUM *num) {
   NUM *res = NUM();
   int64_t val = (int64_t) (res->num = num->num);
 
+  if (val < 1)
+    return 0;
+
   while (--val)
     res->num *= val;
 
