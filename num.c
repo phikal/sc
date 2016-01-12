@@ -6,6 +6,10 @@
 #include <stdio.h>
 #include <ctype.h>
 
+#include "op.h"
+
+#define is(str) if (strcmp(s, str) == 0) return
+
 /* GET TYPE
 
    Interprets STRING and returns
@@ -26,6 +30,7 @@ unsigned char gettype(const char *s) {
     case 'n': return NEG;
     case '!': return FAC;
     }
+  is("gcd") GCD;
   return -1;
 }
 

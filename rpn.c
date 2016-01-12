@@ -8,6 +8,8 @@
 
 #include <stddef.h>
 
+#include "op.h"
+
 #define NEGATIVE itonum(-1)
 #define HALF ftonum(0.5)
 
@@ -63,6 +65,10 @@ NUM *rpsi(STACK **s) {
 	break;
     case FAC:
 	r = fact(rpsi(s));
+	break;
+    case GCD:
+	r = gcd(rpsi(s),
+		rpsi(s));
 	break;
     case NRM:
 	r = i;

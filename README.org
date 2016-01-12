@@ -27,6 +27,8 @@ sense =dc(1)= but without =p= and a lot worse (for now...).
    | =i=    | Inversion                      |              1 |
    | =n=    | Negative                       |              1 |
    | =!=    | Factorial                      |              1 |
+   | =gcd=  | Greatest Common Denominator    |              2 |
+
 * Examples
   =sc 3 4 x= Results in: =12.000000=
 

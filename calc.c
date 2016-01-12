@@ -20,11 +20,11 @@
    NUM has decimals or not */
 
 bool isint(NUM *n) {
-  return (fmod((n->num),1) == 0);
+    return (fmod((n->num),1) == 0);
 }
 
 bool isdeci(NUM *n) {
-  return !isint(n);
+    return !isint(n);
 }
 
 /* SUMMATION
@@ -84,17 +84,43 @@ NUM *rpow(NUM *n1, NUM *n2) {
    of NUM, if int */
 
 NUM *fact(NUM *num) {
-  if (isdeci(num))
-    return NULL;
+    if (isdeci(num))
+	return NULL;
 
-  NUM *res = NUM();
-  int64_t val = (int64_t) (res->num = num->num);
+    NUM *res = NUM();
+    int64_t val = (int64_t) (res->num = num->num);
 
-  if (val < 1)
-    return 0;
+    if (val < 1)
+	return 0;
 
-  while (--val)
-    res->num *= val;
+    while (--val)
+	res->num *= val;
 
-   return res;
+    return res;
+}
+
+/* GREATEST COMMON DENOMINATOR
+
+   Calculates the greatest common
+   denominator of two integers
+   Uses Euclid's Algorithm */
+
+NUM *gcd(NUM *num1, NUM *num2) {
+    if (isdeci(num1) ||
+	isdeci(num2))
+	return NULL;
+    
+    NUM *res = NUM();
+    int64_t a = (int64_t) num1->num,
+	b = (int64_t) num2->num,
+	h = 0; // holder 
+
+    while (b != 0) {
+	h = a;
+	a = b;
+	b = h % b;
+    }
+
+    res->num = a;
+    return res;
 }

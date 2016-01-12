@@ -25,5 +25,5 @@ int main() {
   printf("t5: %d\n", (fact(n4)->num == 24));
   printf("t6: %d\n", isnumber("32"));
   printf("t7: %d\n", !isnumber("abc"));
-  
+  printf("t8: %d\n", (gcd(itonum(42), itonum(66))->num == 6));
 }

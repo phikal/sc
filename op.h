@@ -14,3 +14,4 @@
 #define INV 7 // invert (x^-1)
 #define NEG 8 // negative (x*-1)
 #define FAC 9 // factorial
+#define GCD 10 // greatest common denominator

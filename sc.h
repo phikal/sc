@@ -1,6 +1,4 @@
 
-#include "op.h"
-
 #include <stdint.h>
 
 /* defined in num.c */
@@ -22,6 +20,7 @@ NUM *sum(NUM *n1, NUM *n2);
 NUM *mul(NUM *n1, NUM *n2);
 NUM *rpow(NUM *n1, NUM *n2);
 NUM *fact(NUM *n1);
+NUM *gcd(NUM *n1, NUM *n2);
 
 /* defined in stack.c */
 typedef struct stack STACK;
