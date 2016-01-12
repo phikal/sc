@@ -1,4 +1,9 @@
-#include "../stack.h"
+/* STACK TESTS
+
+   Tests for testing stacks
+   and stack operations */
+
+#include "../sc.h"
 #include <stdio.h>
 
 void prstack(STACK *s) {

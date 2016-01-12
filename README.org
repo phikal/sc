@@ -1,12 +1,12 @@
-#+TITLE: sc - Shell Calculator
+#+TITLE: sc - Shell/Simple/Stack Calculator
 
 =sc= is a simple RPN calculator that interprets
 command line input and outputs a result. In some
 sense =dc(1)= but without =p= and a lot worse (for now...).
 
 * How to use
-  Wikipedia's [[https://en.wikipedia.org/wiki/Reverse_Polish_notation][RPN]]
-  article explains what the reversed polish notation is about an why it's /not bad/.
+  Wikipedia's [[https://en.wikipedia.org/wiki/Reverse_Polish_notation][RPN]] article explains what the reversed polish
+  notation is about an why it's /not bad/.
 
   The main reason it's used in =sc= is because brackets
   are annoying to use in a shell environment. 
@@ -26,6 +26,7 @@ sense =dc(1)= but without =p= and a lot worse (for now...).
    | =s=    | Square Root                    |              1 |
    | =i=    | Inversion                      |              1 |
    | =n=    | Negative                       |              1 |
+   | =!=    | Factorial                      |              1 |
 * Examples
   =sc 3 4 x= Results in: =12.000000=
 
@@ -48,6 +49,13 @@ sense =dc(1)= but without =p= and a lot worse (for now...).
   #+end_src
 
   See [[./Makefile][Makefile]] for more information.
+** Tests
+   As of now, there are two tests, managed with =make=:
+
+   #+begin_src
+   make calc_test
+   make stack_test
+   #+end_src
 * To do
   * Reimplement NUM struct and functions to resemble
     GNU =bc= / =dc='s precision.

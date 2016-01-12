@@ -61,9 +61,12 @@ NUM *rpsi(STACK **s) {
 	r = mul(rpsi(s),
 		 NEGATIVE);
 	break;
+    case FAC:
+	r = fact(rpsi(s));
+	break;
     case NRM:
 	r = i;
     }
-
+    
     return r;
 }

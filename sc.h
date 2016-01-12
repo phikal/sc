@@ -21,6 +21,7 @@ void prnum(NUM *n);
 NUM *sum(NUM *n1, NUM *n2);
 NUM *mul(NUM *n1, NUM *n2);
 NUM *rpow(NUM *n1, NUM *n2);
+NUM *fact(NUM *n1);
 
 /* defined in stack.c */
 typedef struct stack STACK;

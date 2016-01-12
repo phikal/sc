@@ -10,6 +10,22 @@
 #include <math.h>
 #include <string.h>
 #include <stddef.h>
+#include <stdbool.h>
+
+#define NUM() malloc(sizeof(NUM))
+
+/* INT OR DECIMAL
+
+   Funcions to check if a
+   NUM has decimals or not */
+
+bool isint(NUM *n) {
+  return (fmod((n->num),1) == 0);
+}
+
+bool isdeci(NUM *n) {
+  return !isint(n);
+}
 
 /* SUMMATION
 
@@ -22,7 +38,7 @@ NUM *sum(NUM *n1, NUM *n2) {
 	n2 == NULL)
 	return NULL;
     
-    NUM *n = malloc(sizeof(NUM));
+    NUM *n = NUM();
     n->num = n1->num + n2->num;
     
     return n;
@@ -39,7 +55,7 @@ NUM *mul(NUM *n1, NUM *n2) {
 	n2 ==  NULL)
 	return NULL;
     
-    NUM *n = malloc(sizeof(NUM));
+    NUM *n = NUM();
     n->num = n1->num * n2->num;
   
     return n;  
@@ -49,15 +65,33 @@ NUM *mul(NUM *n1, NUM *n2) {
 
    n1 to the power of n2. Will
    return NULL, if either is
-   NULL*/
+   NULL */
 
 NUM *rpow(NUM *n1, NUM *n2) {
     if (n1 == NULL ||
 	n2 == NULL)
 	return NULL;
         
-    NUM *n = malloc(sizeof(NUM));
+    NUM *n = NUM();
     n->num = powl(n1->num, n2->num);
     
     return n;
+}
+
+/* FACTORIAL
+
+   Returns factorial value
+   of NUM, if int */
+
+NUM *fact(NUM *num) {
+  if (isdeci(num))
+    return NULL;
+
+  NUM *res = NUM();
+  int64_t val = (int64_t) (res->num = num->num);
+
+  while (--val)
+    res->num *= val;
+
+   return res;
 }
