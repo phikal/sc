@@ -28,6 +28,9 @@ sense =dc(1)= but without =p= and a lot worse (for now...).
    | =n=    | Negative                       |              1 |
    | =!=    | Factorial                      |              1 |
    | =gcd=  | Greatest Common Denominator    |              2 |
+   | =rnd=  | Random number (0 to 1)         |              0 |
+   | =rand= | Random number (arg1 to arg2)   |              2 |
+
 
 * Examples
   =sc 3 4 x= Results in: =12.000000=
@@ -86,9 +89,6 @@ sense =dc(1)= but without =p= and a lot worse (for now...).
     | abs    | Absolute of value                          |         1 |
     | pi     | Value of Pi                                |         0 |
     | e      | Value of Eulers Number                     |         0 |
-    | rnd    | Returns random number                      |         0 |
-    | rand   | Returns random number (between n1 and n2)  |         2 |
-    | randi  | Returns random integer (between n1 and n2) |         2 |
     And probably more over time
     
 * Licence

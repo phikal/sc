@@ -15,3 +15,5 @@
 #define NEG 8 // negative (x*-1)
 #define FAC 9 // factorial
 #define GCD 10 // greatest common denominator
+#define RND 11 // random num from 0 to 1
+#define RAN 12 // random num from x to y

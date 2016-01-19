@@ -2,7 +2,7 @@
 
    This file defines all functions
    that have to do with working with
-   the NUM struct (see calc.h). */
+   the NUM struct (see sc.h). */
 
 #include "sc.h"
 
@@ -11,6 +11,8 @@
 #include <string.h>
 #include <stddef.h>
 #include <stdbool.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 #define NUM() malloc(sizeof(NUM))
 
@@ -25,6 +27,36 @@ bool isint(NUM *n) {
 
 bool isdeci(NUM *n) {
     return !isint(n);
+}
+
+/* COMPARISONS
+
+   Equvalences and unequivalence
+   functions all require two
+   NUMs, with nither being NULL */
+
+bool eq(NUM *n1, NUM *n2) {
+  return n1->num == n2->num;
+}
+
+bool neq(NUM *n1, NUM *n2) {
+  return !eq(n1, n2);
+}
+
+bool lt(NUM *n1, NUM *n2) {
+  return n1->num < n2->num;
+}
+
+bool gt(NUM *n1, NUM *n2) {
+  return n1->num > n2->num;
+}
+
+bool let(NUM *n1, NUM *n2) {
+  return !gt(n1, n2);
+}
+
+bool get(NUM *n1, NUM *n2) {
+  return !lt(n1, n2);
 }
 
 /* SUMMATION
@@ -123,4 +155,25 @@ NUM *gcd(NUM *num1, NUM *num2) {
 
     res->num = a;
     return res;
+}
+
+/* RANDOM GENERATOR
+
+   Generates a pseudo-random
+   number between two values. */
+
+long int random();
+void srandom(unsigned int seed);
+
+NUM *rndg(NUM *num1, NUM *num2) {
+    if (num1 == NULL ||
+	num2 == NULL ||
+	get(num1, num2))
+	return NULL;
+
+    srandom((long int) abs((long int)&num1+getpid()));
+
+    double long n1 = numtof(num1),
+      n2 = numtof(num2);
+    return ftonum((random()/(double) RAND_MAX*(n1-n2))+n2);
 }

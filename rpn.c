@@ -10,6 +10,8 @@
 
 #include "op.h"
 
+#define ZERO itonum(0)
+#define ONE itonum(1)
 #define NEGATIVE itonum(-1)
 #define HALF ftonum(0.5)
 
@@ -69,6 +71,13 @@ NUM *rpsi(STACK **s) {
     case GCD:
 	r = gcd(rpsi(s),
 		rpsi(s));
+	break;
+    case RND:
+	r = rndg(ZERO, ONE);
+	break;
+    case RAN:
+	r = rndg(rpsi(s),
+		 rpsi(s));
 	break;
     case NRM:
 	r = i;

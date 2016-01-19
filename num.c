@@ -31,6 +31,8 @@ unsigned char gettype(const char *s) {
     case '!': return FAC;
     }
   is("gcd") GCD;
+  is("rnd") RND;
+  is("rand") RAN;
   return -1;
 }
 
@@ -40,7 +42,7 @@ unsigned char gettype(const char *s) {
    Checks if STRING is a number,
    and returns a boolean value. */
 
-int isnumber(char *s) {
+bool isnumber(char *s) {
     if (*s == '-' && strlen(s) == 1) return 0;
     for (int i = 0; i < (int) strlen(s); i++)
 	if (!(isdigit(s[i]) ||
@@ -69,10 +71,10 @@ NUM *strtonum(char *s) {
     return n;
 }
 
-/* INT TO NUMBER
+/* INT TO NUMBER (+vv)
 
    Allocates new NUM and inserts
-   value of int64_t */
+   value of int64_t, and vice versa */
 
 NUM *itonum(int64_t i) {
     NUM *n = malloc(sizeof(NUM));
@@ -80,15 +82,23 @@ NUM *itonum(int64_t i) {
     return n;
 }
 
-/* FLOAT TO NUMBER
+int64_t numtoi(NUM *n) {
+    return (int64_t) n->num;
+}
+
+/* FLOAT TO NUMBER (+vv)
 
    Allocates new NUM and inserts
-   value of long double */
+   value of long double, and vice versa */
 
 NUM *ftonum(long double d) {
     NUM *n = malloc(sizeof(NUM));
     n->num = d;
     return n;
+}
+
+long double numtof(NUM *n) {
+    return n->num;
 }
 
 /* PRINT NUMBER
