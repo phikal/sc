@@ -25,6 +25,9 @@ NUM *rpow(NUM *n1, NUM *n2);
 NUM *fact(NUM *n1);
 NUM *gcd(NUM *n1, NUM *n2);
 NUM *rndg(NUM *n1, NUM *n2);
+NUM *rfloor(NUM *n);
+NUM *rround(NUM *n);
+NUM *rceil(NUM *n);
 
 /* defined in stack.c */
 typedef struct stack STACK;

@@ -177,3 +177,30 @@ NUM *rndg(NUM *num1, NUM *num2) {
       n2 = numtof(num2);
     return ftonum((random()/(double) RAND_MAX*(n1-n2))+n2);
 }
+
+/* INTEGER APPROXIMATIONS
+
+   The following functions are used
+   to approximte int values for floating
+   point values. */
+
+NUM *rfloor(NUM *num) {
+  if (num == NULL)
+    return NULL;
+
+  return itonum(floorl(numtof(num)));
+}
+
+NUM *rround(NUM *num) {
+  if (num == NULL)
+    return NULL;
+
+  return itonum(rintl(numtof(num)));
+}
+
+NUM *rceil(NUM *num) {
+  if (num == NULL)
+    return NULL;
+
+  return itonum(ceill(numtof(num)));
+}

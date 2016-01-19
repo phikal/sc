@@ -63,7 +63,7 @@ NUM *rpsi(STACK **s) {
 	break;
     case NEG:
 	r = mul(rpsi(s),
-		 NEGATIVE);
+		NEGATIVE);
 	break;
     case FAC:
 	r = fact(rpsi(s));
@@ -79,8 +79,17 @@ NUM *rpsi(STACK **s) {
 	r = rndg(rpsi(s),
 		 rpsi(s));
 	break;
+    case FLR:
+	r = rfloor(rpsi(s));
+	break;
+    case ROU:
+	r = rround(rpsi(s));
+	break;
+    case CEI:
+	r = rceil(rpsi(s));
+	break;
     case NRM:
-	r = i;
+	    r = i;
     }
     
     return r;

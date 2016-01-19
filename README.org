@@ -30,7 +30,9 @@ sense =dc(1)= but without =p= and a lot worse (for now...).
    | =gcd=  | Greatest Common Denominator    |              2 |
    | =rnd=  | Random number (0 to 1)         |              0 |
    | =rand= | Random number (arg1 to arg2)   |              2 |
-
+   | =r=    | Round value (nearest int)      |              1 |
+   | =f=    | Floor value (lesser int)       |              1 |
+   | =c=    | Ceil' value (greater int)      |              1 |
 
 * Examples
   =sc 3 4 x= Results in: =12.000000=

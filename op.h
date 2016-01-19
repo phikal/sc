@@ -17,3 +17,6 @@
 #define GCD 10 // greatest common denominator
 #define RND 11 // random num from 0 to 1
 #define RAN 12 // random num from x to y
+#define FLR 13 // floor
+#define ROU 14 // round
+#define CEI 15 // ceiling

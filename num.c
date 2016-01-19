@@ -19,21 +19,24 @@
    doesn't exist. */
 
 unsigned char gettype(const char *s) {
-  if (strlen(s) == 1) switch (s[0]) {
-    case '+': return ADD;
-    case '-': return SUB;
-    case 'x': return MUL;
-    case '/': return DIV;
-    case '^': return POW;
-    case 's': return SQR;
-    case 'i': return INV;
-    case 'n': return NEG;
-    case '!': return FAC;
-    }
-  is("gcd") GCD;
-  is("rnd") RND;
-  is("rand") RAN;
-  return -1;
+    if (strlen(s) == 1) switch (s[0]) {
+	case '+': return ADD;
+	case '-': return SUB;
+	case 'x': return MUL;
+	case '/': return DIV;
+	case '^': return POW;
+	case 's': return SQR;
+	case 'i': return INV;
+	case 'n': return NEG;
+	case '!': return FAC;
+	case 'f': return FLR;
+	case 'r': return ROU;
+	case 'c': return CEI;
+	}
+    is("gcd") GCD;
+    is("rnd") RND;
+    is("rand") RAN;
+    return -1;
 }
 
 
