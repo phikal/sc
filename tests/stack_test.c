@@ -46,11 +46,13 @@ int main() {
   /* printf("%Lf\t%p\n", n3->num, &n3->num); */
   /* printf("%Lf\t%p\n", n4->num, &n4->num); */
   
-  printf("t1: %d\n", (n4->num == n3->num));
-  printf("t2: %d\n", (n2->num == (itonum(43))->num));
-  printf("t3: %d\n", (n1->num == (ftonum(32.32))->num));
-  printf("t4: %d\n", (n5 == NULL));
-  printf("t5: %d\n", (n6 == NULL));
-  printf("t6: %d\n", (s == NULL));
-  
+  int c = 0;
+  printf("t1: %d\n", c += (n4->num == n3->num));
+  printf("t2: %d\n", c += (n2->num == (itonum(43))->num));
+  printf("t3: %d\n", c += (n1->num == (ftonum(32.32))->num));
+  printf("t4: %d\n", c += (n5 == NULL));
+  printf("t5: %d\n", c += (n6 == NULL));
+  printf("t6: %d\n", c += (s == NULL));
+
+  printf("test sum: %d -> \033[3%s\033[0m\n", c, (c == 6 ? "2mpassed" : "1mfailed"));
 }

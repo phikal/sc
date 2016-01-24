@@ -6,4 +6,4 @@ INSTALL=/usr/local/bin/
 MAN=/usr/share/man/
 
 # compiler options
-CFLAGS=-O3
+COPTS+=-O3

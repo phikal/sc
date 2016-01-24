@@ -1,5 +1,3 @@
-include config.mk
-
 CC=gcc
 OUT=sc
 FILES=	sc.c\
@@ -7,32 +5,39 @@ FILES=	sc.c\
 	stack.c\
 	calc.c\
 	num.c
-COPTS=-std=c99 -lm -Wall -Wextra
+COPTS=-std=c99 -lm -Wall -Wextra -O2
+
+include config.mk
 
 all:
-	${CC} ${FILES} ${CFLAGS} ${COPTS} -o ${OUT}
+	${CC} ${FILES} ${COPTS} -o ${OUT}
 
 install:
-	mv sc ${INSTALL}
+	@mv sc ${INSTALL}
+	@echo Installed
 
 uninstall:
-	rm ${INSTALL}/sc
+	@rm ${INSTALL}/sc
+	@echo Uninstalled
 
 TEST=test
 
 clean:
-	[ -f sc ] && rm sc
-	[ -f ${TEST} ] && rm ${TEST}
+	@[ -f sc ] && rm sc
+	@[ -f ${TEST} ] && rm ${TEST}
+	@echo Cleaned up
 
 stack_test:
-	${CC} stack.c calc.c num.c tests/stack_test.c ${CFLAGS} ${COPTS} -o ${TEST}
-	./${TEST}
-	rm ${TEST}
+	@echo Test results should equal test numbers
+	@${CC} stack.c calc.c num.c tests/stack_test.c ${COPTS} -O0 -o ${TEST}
+	@./${TEST}
+	@rm ${TEST}
 
 calc_test:
-	${CC} calc.c num.c tests/calc_test.c ${CFLAGS} ${COPTS} -o ${TEST}
-	./${TEST}
-	rm ${TEST}
+	@echo Test results should equal test numbers
+	@${CC} calc.c num.c tests/calc_test.c ${COPTS} -O0 -o ${TEST}
+	@./${TEST}
+	@rm ${TEST}
 
 help:
 	@echo "Type 'make; make install' to install sc"
