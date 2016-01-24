@@ -20,3 +20,4 @@
 #define FLR 13 // floor
 #define ROU 14 // round
 #define CEI 15 // ceiling
+#define MOD 16 // modulo

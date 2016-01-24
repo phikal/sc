@@ -36,6 +36,7 @@ unsigned char gettype(const char *s) {
     is("gcd") GCD;
     is("rnd") RND;
     is("rand") RAN;
+    is("mod") MOD;
     return -1;
 }
 

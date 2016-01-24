@@ -88,6 +88,10 @@ NUM *rpsi(STACK **s) {
     case CEI:
 	r = rceil(rpsi(s));
 	break;
+    case MOD:
+	r = mod(rpsi(s),
+		rpsi(s));
+	break;
     case NRM:
 	    r = i;
     }

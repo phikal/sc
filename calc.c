@@ -22,10 +22,12 @@
    NUM has decimals or not */
 
 bool isint(NUM *n) {
+    if (n == NULL) return 0;
     return (fmod((n->num),1) == 0);
 }
 
 bool isdeci(NUM *n) {
+    if (n == NULL) return 0;
     return !isint(n);
 }
 
@@ -203,4 +205,12 @@ NUM *rceil(NUM *num) {
     return NULL;
 
   return itonum(ceill(numtof(num)));
+}
+
+NUM *mod(NUM *num1, NUM *num2) {
+  if (isdeci(num1) ||
+      isdeci(num2))
+     return NULL;
+
+  return itonum(numtoi(num1) % numtoi(num2));
 }

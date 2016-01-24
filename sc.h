@@ -28,6 +28,7 @@ NUM *rndg(NUM *n1, NUM *n2);
 NUM *rfloor(NUM *n);
 NUM *rround(NUM *n);
 NUM *rceil(NUM *n);
+NUM *mod(NUM *n1, NUM *n2);
 
 /* defined in stack.c */
 typedef struct stack STACK;
