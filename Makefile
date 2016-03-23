@@ -1,10 +1,10 @@
 CC=gcc
 OUT=sc
-FILES=	sc.c\
-	rpn.c\
-	stack.c\
-	calc.c\
-	num.c
+FILES=	src/sc.c\
+	src/rpn.c\
+	src/stack.c\
+	src/calc.c\
+	src/num.c
 COPTS=-std=c99 -lm -Wall -Wextra -O2
 
 include config.mk
@@ -29,13 +29,13 @@ clean:
 
 stack_test:
 	@echo Test results should equal test numbers
-	@${CC} stack.c calc.c num.c tests/stack_test.c ${COPTS} -O0 -o ${TEST}
+	${CC} src/stack.c src/calc.c src/num.c tests/stack_test.c ${COPTS} -O0 -o ${TEST}
 	@./${TEST}
 	@rm ${TEST}
 
 calc_test:
 	@echo Test results should equal test numbers
-	@${CC} calc.c num.c tests/calc_test.c ${COPTS} -O0 -o ${TEST}
+	${CC} src/calc.c src/num.c tests/calc_test.c ${COPTS} -O0 -o ${TEST}
 	@./${TEST}
 	@rm ${TEST}
 
