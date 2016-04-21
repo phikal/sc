@@ -1,4 +1,3 @@
-
 VAL *evalf(ND *n);
 VAL *loadf(ND *n);
 

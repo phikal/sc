@@ -1,9 +1,9 @@
 CC=gcc
 OUT=scl
-FILES=	scl.c\
-	cfunc.c\
+FILES=  scl.c\
+	vtree.c\
 	snode.c\
-	vtree.c
+	cfunc.c\
 #COPTS=-std=c99 -lm -Wall -Wextra -O2
 COPTS=-std=c99 -lm -O0 -ggdb
 
