@@ -1,0 +1,6 @@
+(def (f x)
+     (if (> x 10)
+     	 'var
+	 (* x x)))
+
+(def v (f 3))
