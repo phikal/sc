@@ -13,29 +13,10 @@
 #include "vtree.h"
 #include "snode.h"
 
-// VALUE PRINTING
-
-// EVAL
-/* FILE *findscript(char *name) { */
-/*   char *dup = strdup(getenv("SCPATH")); */
-/*   char *s = dup; */
-/*   char *p = NULL; */
-/*   do { */
-/*     p = strchr(s, ':'); */
-/*     if (p != NULL) { */
-/*       p[0] = 0; */
-/*     } */
-/*     printf("Path in $PATH: %s %d\n", s, strcmp(s, name)); */
-/*     s = p + 1; */
-/*   } while (p != NULL); */
-/*   free(dup); */
-/*   return NULL; */
-/* } */
-
 ND *eval(char *prog, long len) {
   ND *r = (ND *) calloc(1, sizeof(ND)), // root,
     *n = r->parent = r->group = r;  // current node
-
+  
   // default keywords and values
   put_cf(r, *evalf, "eval");
   put_cf(r, *loadf, "load");
@@ -85,7 +66,6 @@ ND *eval(char *prog, long len) {
     
     if (mode == GEN) {
       if (isspace(*c)) continue; // ignore whitespace
-      // printf("==> `%c` (%p)\n", *c, c);
 
       if (*c == '(') {
 	ND *f = (ND *) calloc(1, sizeof(ND));
@@ -95,18 +75,12 @@ ND *eval(char *prog, long len) {
 	v->val.n = f;
 	n->head = v;
 	
-	for (int i = 0; i < (int) depth; i++) printf("  ");
-	printf("+ %p\tadded head to %p,\tin  %p\n", f, n->group, n);
-	
 	n = f;
 	depth++;
       } else if (*c == ')') { depth--;
 	ND *f = (ND *) calloc(1, sizeof(ND));
 	f->parent = n->group;
 	f->group = n->group->group;
-	
-	for (int i = 0; i < (int) depth; i++) printf("  ");
-	printf("- %p\tkilled with tail to %p,\tend %p\n", f, n->group, n);
 
 	n->parent->tail = NULL;
 	n = n->group->tail = f;
@@ -131,16 +105,13 @@ ND *eval(char *prog, long len) {
       char *q = calloc(s-c, sizeof(char));
       strncpy(q, c, s-c);
 
-      for (int i = 0; i < (int) depth; i++) printf("  ");
       VAL *v = (VAL *) calloc(1, sizeof(VAL));
       if (mode == VAR) {
 	v->type = VARIAB;
 	v->val.s = q;
-	printf("v");
       } else if (mode == SYM) {
 	v->type = SYMBOL;
 	v->val.s = q;
-	printf("s");
       } else if (mode == NUM) {
 	char *m;
 	long double n = strtold(q, &m);
@@ -149,7 +120,6 @@ ND *eval(char *prog, long len) {
 	  return NULL;
 	}
 	v->type = SCALAR;
-	printf("n");
 	v->val.v = n;
       }
 
@@ -157,10 +127,7 @@ ND *eval(char *prog, long len) {
       ND *f = (ND *) calloc(1, sizeof(ND));
       f->parent = n;
       f->group = n->group;
-
-      printf(" %p\t`%s` as tail to %p,\tval %p\n", f, q, n, v);
       n = n->tail = f;
-
       c = s-1;
       mode = GEN;;
     }
@@ -196,7 +163,7 @@ int main(int argc, char **argv) {
   
   ND *n = eval(prog, len);
   free(prog);
-  printf("\n");
-  printnode(stdout, n, 0);
-  fprintf(stdout, "\n");
+
+  /* printnode(stdout, n, 0); */
+  /* fprintf(stdout, "\n"); */
 }
