@@ -27,6 +27,7 @@ struct value {
     long double v;
     ND *n;
     char *s;
+    LBD *l;
     FUNC *f;
   } val;
 };
@@ -41,5 +42,6 @@ struct senode {
 // LAMBDA FUNCTION
 struct lambda {
   char **params;
+  int pcount;
   ND *body;
 };

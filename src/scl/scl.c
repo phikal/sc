@@ -13,38 +13,46 @@
 #include "vtree.h"
 #include "snode.h"
 
-ND *eval(char *prog, long len) {
-  ND *r = (ND *) calloc(1, sizeof(ND)), // root,
-    *n = r->parent = r->group = r;  // current node
-  
-  // default keywords and values
-  put_cf(r, *evalf, "eval");
+void defaultize(ND *r) {
+    // default keywords and values
+  put_cf(r, *eval, "eval");
   put_cf(r, *loadf, "load");
-
+  put_cf(r, *cons, "cons");
   put_cf(r, *car, "car");
   put_cf(r, *cdr, "cdr");
   put_cf(r, *def, "def");
   put_cf(r, *lambda, "lambda");
   put_cf(r, *lambda, "\\");
-  
+  put_cf(r, *print, "print");
   put_cf(r, *sum, "+");
   put_cf(r, *sub, "-");
   put_cf(r, *fac, "*");
   put_cf(r, *quo, "/");
-  
   put_cf(r, *eqp, "=");
   put_cf(r, *eqp, "<");
-  put_cf(r, *eqp, ">");
-  
+  put_cf(r, *eqp, ">");  
   put_cf(r, *ife, "if");
   put_cf(r, *and, "and");
   put_cf(r, *or, "or");
   put_cf(r, *not, "not");
+  put_var(r, NULL, "nil");
+  VAL *t = (VAL *) calloc(1, sizeof(VAL)),
+    *f = (VAL *) calloc(1, sizeof(VAL));
+  t->type = f->type = SCALAR;
+  t->val.v = !(f->val.v = 0);
+  put_v(r, t , "true");
+  put_v(r, f, "false");
+}
 
+ND *apply(char *prog, long len) {
+  ND *r = (ND *) calloc(1, sizeof(ND)), // root,
+    *n = r->parent = r->group = r;  // current node
+  defaultize(r);
+  
   enum {        // Possible parsing modes:
     GEN,    // General
-    NUM,    // In number
-    SYM,    // In symbol
+    NUM,    // In number (starts with digit or -)
+    SYM,    // In symbol (starts with ')
     VAR     // In variable (anything else)
   } mode = GEN; // current mode
 
@@ -59,7 +67,9 @@ ND *eval(char *prog, long len) {
     } else col++;
 
     if (*c == ';') { // start comment
-      while (*(++c) != '\n');
+      while (*(++c) != '\n')
+	if ((c+1) >= prog+len || *(c+1) == EOF)
+	  break;
       mode = GEN;
       continue;
     }
@@ -129,7 +139,7 @@ ND *eval(char *prog, long len) {
       f->group = n->group;
       n = n->tail = f;
       c = s-1;
-      mode = GEN;;
+      mode = GEN;
     }
   }
 
@@ -140,30 +150,30 @@ ND *eval(char *prog, long len) {
 int main(int argc, char **argv) {
   if (argc < 2) {
     fprintf(stderr, "no file specified\n");
-    return 1;
+    exit(1);
   }
 
   FILE *f = fopen(argv[1], "r");
   if (f == NULL) {
     fprintf(stderr, "%s: `%s` not found\n", argv[0], argv[1]);
-    return 3;
+    exit(2);
   }
-  fseek (f, 0, SEEK_END);
+
+  fseek(f, 0, SEEK_END);
   long len = ftell(f);
-  fseek (f, 0, SEEK_SET);
+  fseek(f, 0, SEEK_SET);
 
   char *prog, *p;
-  if ((p = prog = malloc(len)))
+  if ((p = prog = malloc(len+1)))
     while (p++ < prog+len) *p = fgetc(f);
   else {
     fprintf(stderr, "%s: alloc error\n", argv[0]);
-    return 4;
+    exit(4);
   }
   fclose (f);
-  
-  ND *n = eval(prog, len);
-  free(prog);
 
-  /* printnode(stdout, n, 0); */
-  /* fprintf(stdout, "\n"); */
+  ND *n = apply(prog, len);
+  eval(n);
+  free(prog);
+  return 0;
 }
