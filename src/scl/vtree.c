@@ -10,18 +10,20 @@ VAL *get_vt(VT *tr, char *key) {
   if (tr != NULL) {
     if (strcmp(key, tr->name) == 0)
       return tr->val;
-    else if (strcmp(key, tr->name) <  0)
-      return get_vt(tr->l_val, key);
     else if (strcmp(key, tr->name) >  0)
+      return get_vt(tr->l_val, key);
+    else if (strcmp(key, tr->name) <  0)
       return get_vt(tr->r_val, key);
   } return NULL;
 }
 
 VAL *get(ND *n, char *key) {
-  VAL *v = get_vt(n->varib, key);
-  if (v == NULL)
+  if (n->varib == NULL)
     return get(n->parent, key);
-  return v;
+  else {
+    VAL *v = get_vt(n->varib, key);
+    return ((v != NULL || n == n->parent) ? v : get(n->parent, key));
+  }
 }
 
 VT *put(VT *tr, VAL *val, char *key) {
@@ -37,6 +39,10 @@ VT *put(VT *tr, VAL *val, char *key) {
   else if (strcmp(tr->name, key) > 0)
     tr->r_val = put(tr->r_val, val, key);
   return tr;
+}
+
+void put_v(ND *n, VAL *val, char *key) {
+  n->varib = put(n->varib, val, key);
 }
 
 void put_sc(ND *n, double val, char *key) {

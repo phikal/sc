@@ -1,6 +1,7 @@
 VAL *get(ND *n, char *key);
 
 VT *put(VT *tr, VAL *val, char *key);
+void put_v(ND *n, VAL *val, char *key);
 void put_sc(ND *n, double val, char *key);
 void put_nd(ND *n, ND *val, char *key);
 void put_sym(ND *n, char *val, char *key);
